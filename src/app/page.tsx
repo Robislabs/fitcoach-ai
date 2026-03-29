@@ -134,7 +134,7 @@ export default function FitCoach() {
         html,body{height:100%;overflow:hidden;}
         body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;}
         body::before{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(0,255,135,0.055) 0%,transparent 70%);pointer-events:none;z-index:0;}
-        .shell{position:relative;z-index:1;display:flex;height:100vh;overflow:hidden;}
+        .shell{position:relative;z-index:1;display:flex;height:100dvh;overflow:hidden;}
         /* Chat */
         .chat-area{flex:1;display:flex;flex-direction:column;min-width:0;border-right:1px solid var(--border);}
         .chat-header{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
@@ -218,7 +218,13 @@ export default function FitCoach() {
         /* Toast */
         .toast{position:fixed;top:22px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--accent);border-radius:11px;padding:11px 22px;display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--accent);box-shadow:0 0 36px var(--accent-glow);animation:toastIn 0.38s cubic-bezier(.22,1,.36,1);z-index:100;}
         @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-14px) scale(0.94);}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}}
-        @media(max-width:680px){.sidebar{display:none;}}
+        @media(max-width:680px){
+          html,body{height:auto;overflow-y:auto;}
+          .shell{flex-direction:column;height:auto;}
+          .chat-area{border-right:none;flex:none;height:60dvh;}
+          .chat-header{padding-top:calc(18px + env(safe-area-inset-top,0px));}
+          .sidebar{display:flex;flex-direction:column;width:100%;padding:14px 14px 32px;}
+        }
       `}</style>
 
       {levelUp && <div className="toast"><span>🏆</span><span>Level Up — {levelUp}!</span></div>}
